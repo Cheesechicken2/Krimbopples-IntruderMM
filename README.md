@@ -1,4 +1,4 @@
-IntruderMM megapatch from the repo of my upcoming map gooberside ,
+IntruderMM megapatch from the repo of my upcoming map gooberhill ,
 contains local activators ("Clientsided Activator / LocalMe"), heligun from MS2.0 (Heligun.cs + SightSensor.cs + SpawnProjectile.cs), nudge zone ragdoll interactivity ("Rag Speed, Rag Direction Transform"), team custompickups ("Teams Allowed") + my custom editor ui to make using the new and past features easier. 
 
 Examples: 
