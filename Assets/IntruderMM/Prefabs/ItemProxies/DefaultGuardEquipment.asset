@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 478ca35278c6ca24fa9cf6dc65db3073, type: 3}
+  m_Name: DefaultGuardEquipment
+  m_EditorClassIdentifier: 
+  gunItems:
+  - gunItemProxy: {fileID: 11400000, guid: a41e50fe8564ae14b905d65bd4ff1a4f, type: 2}
+    loadedAmmo: 30
+  - gunItemProxy: {fileID: 11400000, guid: 896e65406c3080a4c949e203eab66cd8, type: 2}
+    loadedAmmo: 15
+  throwableItems:
+  - throwableItemProxy: {fileID: 11400000, guid: dd9c232b094207a498da73d79e2e47dc,
+      type: 2}
+    amount: 2
+  - throwableItemProxy: {fileID: 11400000, guid: ebe9d396aa87d65419584fed10bbbda0,
+      type: 2}
+    amount: 1
+  - throwableItemProxy: {fileID: 11400000, guid: 42972b748fccd3845aba61d159daf40f,
+      type: 2}
+    amount: 4
+  - throwableItemProxy: {fileID: 11400000, guid: a959caac79dedb649819cc8c777b484c,
+      type: 2}
+    amount: 4
+  - throwableItemProxy: {fileID: 11400000, guid: bf95dae4fafeb8f4386dd2c31dd32b72,
+      type: 2}
+    amount: 1
+  - throwableItemProxy: {fileID: 11400000, guid: f2aa989d7d92e3c4a92e63a42b08d6e9,
+      type: 2}
+    amount: 1
+  ammoItems:
+  - ammoItemProxy: {fileID: 11400000, guid: 6f3e2aaeb7f52fc4dad9a72821ffb3de, type: 2}
+    amount: 60
+  - ammoItemProxy: {fileID: 11400000, guid: 2f0e91f833eca6143b8ae6a9bff64be3, type: 2}
+    amount: 30
+  otherItemProxies: []

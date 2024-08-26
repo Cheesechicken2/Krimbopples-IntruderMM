@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 478ca35278c6ca24fa9cf6dc65db3073, type: 3}
+  m_Name: TestEquipmentSet
+  m_EditorClassIdentifier: 
+  gunItems:
+  - gunItemProxy: {fileID: 11400000, guid: 896e65406c3080a4c949e203eab66cd8, type: 2}
+    loadedAmmo: 20
+  - gunItemProxy: {fileID: 11400000, guid: a41e50fe8564ae14b905d65bd4ff1a4f, type: 2}
+    loadedAmmo: 20
+  throwableItems:
+  - throwableItemProxy: {fileID: 11400000, guid: 42972b748fccd3845aba61d159daf40f,
+      type: 2}
+    amount: 6
+  ammoItems: []
+  otherItemProxies:
+  - {fileID: 11400000, guid: 71c261fb85bf15e459b3e27bffc52f06, type: 2}

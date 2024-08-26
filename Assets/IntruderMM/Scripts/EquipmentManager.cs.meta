@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: ff3ec2eadda424f0b88cf10aed54fd6a
+timeCreated: 1591759746
+licenseType: Pro
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - guardEquipmentSet: {fileID: 11400000, guid: cdcb8bbdcef5b414b9bf634081f6d2ad,
+      type: 2}
+  - intruderEquipmentSet: {fileID: 11400000, guid: ae3fa43c725c8db4eb1602e31add9798,
+      type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
