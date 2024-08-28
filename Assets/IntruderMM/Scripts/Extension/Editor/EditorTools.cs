@@ -217,6 +217,8 @@ namespace Assets.IntruderMM.Editor
 
 							CreateMenuItem(proxyMenu, "Gamemode/Hack/Create Gamemode", "Assets/IntruderMM/Prefabs/HackModeProxy.prefab");
 							CreateMenuItem(proxyMenu, "Gamemode/Hack/Hack Node", "Assets/IntruderMM/Prefabs/HackNodeProxy.prefab");
+							
+							CreateMenuItem(ProxyMenu, "Generic/Krimbopple", "Assets/IntruderMM/Prefabs/HeliGun.prefab")
 
 							CreateMenuItem(proxyMenu, "Generic/Pickup", "Assets/IntruderMM/Prefabs/Pickup.prefab");
 							CreateMenuItem(proxyMenu, "Generic/Glass", "Assets/IntruderMM/Prefabs/GlassProxy.prefab");
@@ -225,7 +227,6 @@ namespace Assets.IntruderMM.Editor
 							CreateMenuItem(proxyMenu, "Generic/Note", "Assets/IntruderMM/Prefabs/NoteProxy.prefab");
 							CreateMenuItem(proxyMenu, "Generic/Keypad", "Assets/IntruderMM/Prefabs/Keypad.prefab");
 							CreateMenuItem(proxyMenu, "Generic/Mirror", "Assets/IntruderMM/Prefabs/Proxy/Mirror.prefab");
-							CreateMenuItem(proxyMenu, "Generic/HeliGun", "Assets/IntruderMM/Prefabs/Proxy/HeliGun.prefab");
 							proxyMenu.AddItem(new GUIContent("Generic/Compass Direction"), false, CreateCompassDirection);
 							proxyMenu.ShowAsContext();
 						}
