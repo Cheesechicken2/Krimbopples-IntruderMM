@@ -225,10 +225,11 @@ namespace Assets.IntruderMM.Editor
 							CreateMenuItem(proxyMenu, "Generic/Note", "Assets/IntruderMM/Prefabs/NoteProxy.prefab");
 							CreateMenuItem(proxyMenu, "Generic/Keypad", "Assets/IntruderMM/Prefabs/Keypad.prefab");
 							CreateMenuItem(proxyMenu, "Generic/Mirror", "Assets/IntruderMM/Prefabs/Proxy/Mirror.prefab");
+							CreateMenuItem(proxyMenu, "Generic/HeliGun", "Assets/IntruderMM/Prefabs/Proxy/HeliGun.prefab");
 							proxyMenu.AddItem(new GUIContent("Generic/Compass Direction"), false, CreateCompassDirection);
 							proxyMenu.ShowAsContext();
 						}
-					}
+					
 					GUILayout.EndArea();
 
 					// Activator Info
