@@ -218,7 +218,7 @@ namespace Assets.IntruderMM.Editor
 							CreateMenuItem(proxyMenu, "Gamemode/Hack/Create Gamemode", "Assets/IntruderMM/Prefabs/HackModeProxy.prefab");
 							CreateMenuItem(proxyMenu, "Gamemode/Hack/Hack Node", "Assets/IntruderMM/Prefabs/HackNodeProxy.prefab");
 
-							CreateMenuItem(proxyMenu, "Generic/Krimbopple", "Assets/IntruderMM/Prefabs/HeliGun.prefab");
+							CreateMenuItem(proxyMenu, "KrimsMM/HeliGun", "Assets/IntruderMM/Prefabs/HeliGun.prefab");
 
 							CreateMenuItem(proxyMenu, "Generic/Pickup", "Assets/IntruderMM/Prefabs/Pickup.prefab");
 							CreateMenuItem(proxyMenu, "Generic/Glass", "Assets/IntruderMM/Prefabs/GlassProxy.prefab");

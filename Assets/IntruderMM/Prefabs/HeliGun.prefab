@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 400002}
   - component: {fileID: 5663595719839782708}
   m_Layer: 0
-  m_Name: HeliGun(UNFINISHED)
+  m_Name: HeliGun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
