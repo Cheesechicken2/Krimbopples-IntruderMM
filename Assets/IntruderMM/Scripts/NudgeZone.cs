@@ -15,15 +15,15 @@ public class NudgeZone : MonoBehaviour
     [Tooltip("How quickly to accelerate to max speed")]
     public float lerpSpeed = 10f;
 
+    [Tooltip("(REQUIRED) Assign a transform here with the blue Z-axis (forward) facing the direction you want to nudge")]
+    public Transform directionTransform;
+
     [Header("Ragdoll Settings")]
     [Tooltip("Speed applied to ragdoll objects")]
     public float ragSpeed = 100f;
 
     [Tooltip("Torque applied to ragdoll objects")]
     public Vector3 ragTorque;
-
-    [Tooltip("(REQUIRED) Assign a transform here with the blue Z-axis (forward) facing the direction you want to nudge")]
-    public Transform directionTransform;
 
     [Tooltip("(OPTIONAL) Assign a transform for the ragdoll direction")]
     public Transform ragDirectionTransform;
