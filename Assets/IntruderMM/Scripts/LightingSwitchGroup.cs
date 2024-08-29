@@ -22,4 +22,21 @@ public class LightingSwitchGroup : MonoBehaviour
     public bool disableBakedLightsOnStart = true;
 
     public List<Light> bakedLights = new List<Light>();
+
+#if UNITY_EDITOR
+	[MenuItem("Assets/Create/LightingSwitchRenderSettingsData")]
+	public static void CreateMyAsset()
+	{
+		LightingSwitchRenderSettingsData asset = ScriptableObject.CreateInstance<LightingSwitchRenderSettingsData>();
+
+		string name = UnityEditor.AssetDatabase.GenerateUniqueAssetPath("Assets/LightingSwitchRenderSettingsData.asset");
+		AssetDatabase.CreateAsset(asset, name);
+		AssetDatabase.SaveAssets();
+
+		EditorUtility.FocusProjectWindow();
+
+		Selection.activeObject = asset;
+	}
+#endif
+
 }
