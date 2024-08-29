@@ -8,4 +8,6 @@ public class DayTimeManager : MonoBehaviour
 
     public int[] randomTimeIndexChances;
 
+    public LightingSwitchManager LightingSwitchManager;
+
 }
