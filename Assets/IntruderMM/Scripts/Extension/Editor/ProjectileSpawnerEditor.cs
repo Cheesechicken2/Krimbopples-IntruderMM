@@ -32,6 +32,47 @@ namespace Assets.IntruderMM.Editor
         /// <summary>Current SpawnProjectile tab group</summary>
         private int currentToolbarButton;
 
+        // List of projectile names
+        private readonly string[] projectileNames = new string[]
+        {
+            "BananaPeel",
+            "BananaRifleBullet",
+            "BloonDrone",
+            "BloonGun",
+            "BoxingGlovePunch",
+            "ChairProjectile",
+            "CSGrenade",
+            "Decoy",
+            "DecoyCrouch",
+            "ExplosionDamage",
+            "FlubberProjectile",
+            "Grenade",
+            "GrenadeShortFuse",
+            "Headshot",
+            "HeadshotPistol",
+            "HeadshotShotgun",
+            "HeadshotSniper",
+            "LaserSensor",
+            "Mortar",
+            "MortarExplosionDamage",
+            "Pistol2Bullet",
+            "PistolBullet",
+            "RemoteCharge",
+            "Rocket",
+            "RocketDamage",
+            "ShotgunBullet",
+            "ShotgunPellet",
+            "ShotgunPelletHeadshot",
+            "ShotgunPelletsMulti",
+            "SMGBullet",
+            "SmokeGrenade",
+            "SniperBullet",
+            "Snowball",
+            "SnowballExplosionDamage"
+        };
+
+        private int selectedProjectileIndex;
+
         /// <summary>Called when the editor is enabled</summary>
         private void OnEnable()
         {
@@ -54,6 +95,9 @@ namespace Assets.IntruderMM.Editor
             forwardOffsetProp = serializedObject.FindProperty(nameof(SpawnProjectile.forwardOffset));
             canHitOwnerProp = serializedObject.FindProperty(nameof(SpawnProjectile.canHitOwner));
             useLocalPosProp = serializedObject.FindProperty(nameof(SpawnProjectile.useLocalPos));
+
+            // Initialize the selected index
+            selectedProjectileIndex = Mathf.Max(0, System.Array.IndexOf(projectileNames, spawnProjectileTarget.projectileName));
         }
 
         /// <summary>InspectorGUI for SpawnProjectile</summary>
@@ -97,10 +141,13 @@ namespace Assets.IntruderMM.Editor
             GUILayout.BeginVertical("Box");
             EditorGUILayout.LabelField("General Settings", EditorStyles.boldLabel);
 
-            EditorGUILayout.PropertyField(projectileNameProp, new GUIContent("Projectile Name", "Name of the projectile"));
-            EditorGUILayout.PropertyField(projProp, new GUIContent("Projectile Prefab", "Prefab of the projectile to be spawned"));
+            // Dropdown for projectile name
+            selectedProjectileIndex = EditorGUILayout.Popup("Projectile Name", selectedProjectileIndex, projectileNames);
+            projectileNameProp.stringValue = projectileNames[selectedProjectileIndex];
+
             EditorGUILayout.PropertyField(speedProp, new GUIContent("Speed", "Speed at which the projectile will be launched"));
             EditorGUILayout.PropertyField(canFireProp, new GUIContent("Can Fire", "Is the projectile allowed to be fired?"));
+            EditorGUILayout.HelpBox("Fire rate should always be never more than 2! The lower the better! (again)", MessageType.Info);
             EditorGUILayout.PropertyField(fireRateProp, new GUIContent("Fire Rate", "Rate of fire (in seconds) between each shot"));
             EditorGUILayout.PropertyField(autoAddPhotonViewProp, new GUIContent("Auto Add Photon View", "Automatically add PhotonView if missing"));
             EditorGUILayout.PropertyField(forwardOffsetProp, new GUIContent("Forward Offset", "Offset of the projectile from the spawn point"));

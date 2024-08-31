@@ -25,9 +25,6 @@ namespace Assets.IntruderMM.Editor
         {
             if (heliGunTarget == null) { return; }
 
-            // Display warning
-            EditorGUILayout.HelpBox("THIS DOESN'T FUNCTION AS OF YET, I'M STILL WORKING ON IT.", MessageType.Warning);
-
             // Toolbar GUI
             currentToolbarButton = GUILayout.Toolbar(currentToolbarButton, new string[] { "Settings", "Shooting", "Targeting" });
             switch (currentToolbarButton)
@@ -53,6 +50,8 @@ namespace Assets.IntruderMM.Editor
                     EditorGUILayout.PropertyField(serializedObject.FindProperty(nameof(HeliGun.shootGuards)), new GUIContent("Shoot Guards", "Should the HeliGun shoot guards?"));
                     EditorGUILayout.PropertyField(serializedObject.FindProperty(nameof(HeliGun.shotsPerSalvo)), new GUIContent("Shots Per Salvo", "Number of shots fired per salvo"));
                     EditorGUILayout.PropertyField(serializedObject.FindProperty(nameof(HeliGun.fireRate)), new GUIContent("Fire Rate", "Time between shots within a salvo (in seconds)"));
+
+                    EditorGUILayout.HelpBox("Fire rate should always be never more than 2! The lower the better!", MessageType.Info);
                     EditorGUILayout.EndVertical();
                     break;
 
