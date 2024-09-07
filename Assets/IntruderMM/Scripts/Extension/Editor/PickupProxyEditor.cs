@@ -11,25 +11,22 @@ public class PickupProxyEditor : Editor
     private GUIStyle textAreaStyle;
     private GUIStyle headerStyle;
 
-    private Vector2 scrollPosition;  // For scrolling
+    private Vector2 scrollPosition;
     private Font customFont;
 
-    private Dictionary<PickupType, ItemProxy> pickupTypeToProxyMap; // Maps PickupType to ItemProxy
+    private Dictionary<PickupType, ItemProxy> pickupTypeToProxyMap;
 
     private void SetStyles()
     {
         if (buttonStyle == null)
         {
-            // Load textures
             Texture2D buttonTexture = (Texture2D)AssetDatabase.LoadAssetAtPath("Assets/IntruderMM/Scripts/Extension/Editor/GUI/button.png", typeof(Texture2D));
             Texture2D buttonHoverTexture = (Texture2D)AssetDatabase.LoadAssetAtPath("Assets/IntruderMM/Scripts/Extension/Editor/GUI/buttonHover.png", typeof(Texture2D));
             Texture2D buttonSelectTexture = (Texture2D)AssetDatabase.LoadAssetAtPath("Assets/IntruderMM/Scripts/Extension/Editor/GUI/buttonSelect.png", typeof(Texture2D));
             Texture2D boxTexture = (Texture2D)AssetDatabase.LoadAssetAtPath("Assets/IntruderMM/Scripts/Extension/Editor/GUI/box.png", typeof(Texture2D));
 
-            // Load custom font
             customFont = AssetDatabase.LoadAssetAtPath<Font>("Assets/IntruderMM/Scripts/Extension/Editor/GUI/Font/ShareTechMono-Regular.ttf");
 
-            // Button style
             buttonStyle = new GUIStyle(GUI.skin.button)
             {
                 normal = { background = buttonTexture },
@@ -42,7 +39,6 @@ public class PickupProxyEditor : Editor
                 fixedWidth = 200
             };
 
-            // Box style
             boxStyle = new GUIStyle(EditorStyles.helpBox)
             {
                 normal = { background = boxTexture },
@@ -50,7 +46,6 @@ public class PickupProxyEditor : Editor
                 margin = new RectOffset(0, 0, 10, 10)
             };
 
-            // Label style
             labelStyle = new GUIStyle(EditorStyles.label)
             {
                 fontSize = 14,
@@ -58,7 +53,7 @@ public class PickupProxyEditor : Editor
                 alignment = TextAnchor.MiddleLeft
             };
 
-            // TextArea style
+
             textAreaStyle = new GUIStyle(EditorStyles.textArea)
             {
                 fontSize = 14,
@@ -66,7 +61,7 @@ public class PickupProxyEditor : Editor
                 wordWrap = true
             };
 
-            // Header style
+
             headerStyle = new GUIStyle(EditorStyles.boldLabel)
             {
                 fontSize = 16,
@@ -78,6 +73,7 @@ public class PickupProxyEditor : Editor
 
     private void OnEnable()
     {
+
         InitializePickupTypeToProxyMap();
     }
 
@@ -86,10 +82,33 @@ public class PickupProxyEditor : Editor
         pickupTypeToProxyMap = new Dictionary<PickupType, ItemProxy>
         {
             { PickupType.SniperRifle, (ItemProxy)AssetDatabase.LoadAssetAtPath("Assets/IntruderMM/Prefabs/ItemProxies/SniperRifleProxy.asset", typeof(ItemProxy)) },
-            { PickupType.SniperAmmox5, (ItemProxy)AssetDatabase.LoadAssetAtPath("Assets/IntruderMM/Prefabs/ItemProxies/SniperRifleAmmo.asset", typeof(ItemProxy)) },
+            { PickupType.SniperAmmox5, (ItemProxy)AssetDatabase.LoadAssetAtPath("Assets/IntruderMM/Prefabs/ItemProxies/SniperRifleAmmoProxy.asset", typeof(ItemProxy)) },
             { PickupType.Banana, (ItemProxy)AssetDatabase.LoadAssetAtPath("Assets/IntruderMM/Prefabs/ItemProxies/BananaProxy.asset", typeof(ItemProxy)) },
             { PickupType.RedDot, (ItemProxy)AssetDatabase.LoadAssetAtPath("Assets/IntruderMM/Prefabs/ItemProxies/RedDotProxy.asset", typeof(ItemProxy)) },
             { PickupType.SMG, (ItemProxy)AssetDatabase.LoadAssetAtPath("Assets/IntruderMM/Prefabs/ItemProxies/SMGProxy.asset", typeof(ItemProxy)) },
+            { PickupType.SMGAmmox30, (ItemProxy)AssetDatabase.LoadAssetAtPath("Assets/IntruderMM/Prefabs/ItemProxies/SMGAmmoProxy.asset", typeof(ItemProxy)) },
+            { PickupType.BoxingGloves, (ItemProxy)AssetDatabase.LoadAssetAtPath("Assets/IntruderMM/Prefabs/ItemProxies/BoxingGlovesProxy.asset", typeof(ItemProxy)) },
+            { PickupType.Shield, (ItemProxy)AssetDatabase.LoadAssetAtPath("Assets/IntruderMM/Prefabs/ItemProxies/ShieldProxy.asset", typeof(ItemProxy)) },
+            { PickupType.LaserSensor, (ItemProxy)AssetDatabase.LoadAssetAtPath("Assets/IntruderMM/Prefabs/ItemProxies/LaserSensorProxy.asset", typeof(ItemProxy)) },
+            { PickupType.Shotgun, (ItemProxy)AssetDatabase.LoadAssetAtPath("Assets/IntruderMM/Prefabs/ItemProxies/ShotgunProxy.asset", typeof(ItemProxy)) },
+            { PickupType.ShotgunAmmox6, (ItemProxy)AssetDatabase.LoadAssetAtPath("Assets/IntruderMM/Prefabs/ItemProxies/ShotgunAmmoProxy.asset", typeof(ItemProxy)) },
+            { PickupType.Pistol2, (ItemProxy)AssetDatabase.LoadAssetAtPath("Assets/IntruderMM/Prefabs/ItemProxies/ShrikePistolProxy.asset", typeof(ItemProxy)) },
+            { PickupType.Pistol, (ItemProxy)AssetDatabase.LoadAssetAtPath("Assets/IntruderMM/Prefabs/ItemProxies/SilencedPistolProxy.asset", typeof(ItemProxy)) },
+            { PickupType.PistolAmmox15, (ItemProxy)AssetDatabase.LoadAssetAtPath("Assets/IntruderMM/Prefabs/ItemProxies/PistolAmmoProxy.asset", typeof(ItemProxy)) },
+            { PickupType.BloonCam, (ItemProxy)AssetDatabase.LoadAssetAtPath("Assets/IntruderMM/Prefabs/ItemProxies/BloonCamProxy.asset", typeof(ItemProxy)) },
+            { PickupType.BloonGun, (ItemProxy)AssetDatabase.LoadAssetAtPath("Assets/IntruderMM/Prefabs/ItemProxies/BloonGunProxy.asset", typeof(ItemProxy)) },
+            { PickupType.Grenade, (ItemProxy)AssetDatabase.LoadAssetAtPath("Assets/IntruderMM/Prefabs/ItemProxies/GrenadeProxy.asset", typeof(ItemProxy)) },
+            { PickupType.RemoteCharge, (ItemProxy)AssetDatabase.LoadAssetAtPath("Assets/IntruderMM/Prefabs/ItemProxies/RemoteChargeProxy.asset", typeof(ItemProxy)) },
+            { PickupType.Binoculars, (ItemProxy)AssetDatabase.LoadAssetAtPath("Assets/IntruderMM/Prefabs/ItemProxies/BinocularsProxy.asset", typeof(ItemProxy)) },
+            { PickupType.SmokeGrenade, (ItemProxy)AssetDatabase.LoadAssetAtPath("Assets/IntruderMM/Prefabs/ItemProxies/SmokeGrenadeProxy.asset", typeof(ItemProxy)) },
+            { PickupType.CSGrenade, (ItemProxy)AssetDatabase.LoadAssetAtPath("Assets/IntruderMM/Prefabs/ItemProxies/CSGrenadeProxy.asset", typeof(ItemProxy)) },
+            { PickupType.CardboardDecoy, (ItemProxy)AssetDatabase.LoadAssetAtPath("Assets/IntruderMM/Prefabs/ItemProxies/CutoutProxy.asset", typeof(ItemProxy)) },
+            { PickupType.BushCamo, (ItemProxy)AssetDatabase.LoadAssetAtPath("Assets/IntruderMM/Prefabs/ItemProxies/BushCamoProxy.asset", typeof(ItemProxy)) },
+            { PickupType.SnowballLauncher, (ItemProxy)AssetDatabase.LoadAssetAtPath("Assets/IntruderMM/Prefabs/ItemProxies/SnowballLauncherProxy.asset", typeof(ItemProxy)) },
+            { PickupType.BananaRifle, (ItemProxy)AssetDatabase.LoadAssetAtPath("Assets/IntruderMM/Prefabs/ItemProxies/BananaRifleProxy.asset", typeof(ItemProxy)) },
+            { PickupType.BananaRifleAmmo, (ItemProxy)AssetDatabase.LoadAssetAtPath("Assets/IntruderMM/Prefabs/ItemProxies/BananaRifleAmmoProxy.asset", typeof(ItemProxy)) },
+            { PickupType.Medkit, (ItemProxy)AssetDatabase.LoadAssetAtPath("Assets/IntruderMM/Prefabs/ItemProxies/MedkitProxy.asset", typeof(ItemProxy)) },
+            { PickupType.SnowballLauncherAmmo, (ItemProxy)AssetDatabase.LoadAssetAtPath("Assets/IntruderMM/Prefabs/ItemProxies/SnowballLauncherAmmoProxy.asset", typeof(ItemProxy)) },
             // Add others here if i forgot
         };
     }
@@ -101,22 +120,22 @@ public class PickupProxyEditor : Editor
 
         PickupProxy proxy = (PickupProxy)target;
 
-        // Display a scrollable list of PickupType buttons
+
         EditorGUILayout.LabelField("Pickup Types", headerStyle);
 
-        // Begin scroll view
-        scrollPosition = EditorGUILayout.BeginScrollView(scrollPosition, GUILayout.Height(400));  // Adjust the height to make the list scrollable
 
-        // Display buttons in a grid format
+        scrollPosition = EditorGUILayout.BeginScrollView(scrollPosition, GUILayout.Height(400));  
+
+
         DisplayPickupTypeGrid(proxy);
 
-        EditorGUILayout.EndScrollView();  // End scroll view
+        EditorGUILayout.EndScrollView();
 
-        // Draw other settings in a styled box
+
         EditorGUILayout.BeginVertical(boxStyle);
         EditorGUILayout.LabelField("Other Settings", headerStyle);
 
-        // Pickup Item Field (manual selection)
+
         EditorGUILayout.PropertyField(serializedObject.FindProperty("pickupItem"), new GUIContent("Pickup Item"));
 
         // Pickup Message
@@ -137,22 +156,20 @@ public class PickupProxyEditor : Editor
         // Teams allowed
         EditorGUILayout.PropertyField(serializedObject.FindProperty("teamsAllowed"), new GUIContent("Teams Allowed"));
 
-        EditorGUILayout.EndVertical();  // End box
+        EditorGUILayout.EndVertical();
 
         serializedObject.ApplyModifiedProperties();
     }
 
     private void DisplayPickupTypeGrid(PickupProxy proxy)
     {
-        // Define grid dimensions
         int itemsPerRow = 4;
         int buttonWidth = 200; // Width of each button
         int buttonHeight = 40; // Height of each button
 
-        // Start vertical layout
         EditorGUILayout.BeginVertical();
 
-        // Start grid layout
+
         EditorGUILayout.BeginHorizontal();
 
         int index = 0;
@@ -160,18 +177,20 @@ public class PickupProxyEditor : Editor
         {
             if (index > 0 && index % itemsPerRow == 0)
             {
-                // Move to the next row
+
                 EditorGUILayout.EndHorizontal();
                 EditorGUILayout.BeginHorizontal();
             }
 
-            // Create button
+
             if (GUILayout.Button(pickupType.ToString(), buttonStyle, GUILayout.Width(buttonWidth), GUILayout.Height(buttonHeight)))
             {
-                // Set the pickupItem to the corresponding proxy
+
                 if (pickupTypeToProxyMap.TryGetValue(pickupType, out ItemProxy proxyItem))
                 {
                     proxy.pickupItem = proxyItem;
+
+                    RefreshMesh(proxy);
                 }
                 proxy.pickupType = pickupType;
                 Debug.Log($"Selected PickupType: {pickupType}, Updated Pickup Item: {proxy.pickupItem}");
@@ -180,10 +199,31 @@ public class PickupProxyEditor : Editor
             index++;
         }
 
-        // End last row
         EditorGUILayout.EndHorizontal();
 
-        // End vertical layout
         EditorGUILayout.EndVertical();
+    }
+
+    private void RefreshMesh(PickupProxy proxy)
+    {
+        MeshFilter meshFilter = proxy.GetComponent<MeshFilter>();
+        if (meshFilter != null)
+        {
+            if (proxy.pickupItem != null && proxy.pickupItem.pickupMesh != null)
+            {
+                meshFilter.mesh = proxy.pickupItem.pickupMesh;
+            }
+            else
+            {
+                meshFilter.mesh = Resources.GetBuiltinResource<Mesh>("Cube.fbx");
+            }
+        }
+
+        MeshRenderer meshRenderer = proxy.GetComponent<MeshRenderer>();
+        if (meshRenderer == null)
+        {
+            meshRenderer = proxy.gameObject.AddComponent<MeshRenderer>();
+        }
+
     }
 }

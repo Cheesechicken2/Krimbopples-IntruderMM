@@ -182,7 +182,7 @@ namespace Assets.IntruderMM.Editor
 					// BOTTOM LEFT ANCHOR
 					GUILayout.BeginArea(new Rect(10, sceneView.position.height - toolbarBottomLeftHeight * Preferences.toolbarScale - 16 - 10, (120 * Preferences.toolbarScale) * 3, toolbarBottomLeftHeight * Preferences.toolbarScale));
 					{
-						GUILayout.Label("IntruderMM", box, GUILayout.MaxHeight(32 * Preferences.toolbarScale), GUILayout.MaxWidth(128 * Preferences.toolbarScale));
+						GUILayout.Label("Krims-IntruderMM", box, GUILayout.MaxHeight(32 * Preferences.toolbarScale), GUILayout.MaxWidth(150 * Preferences.toolbarScale));
 						GUILayout.BeginHorizontal(GUILayout.ExpandWidth(true), GUILayout.ExpandHeight(true));
 						{
 							if (GUILayout.Button("Test Map", bottomButton, GUILayout.ExpandHeight(true), GUILayout.ExpandWidth(true)))

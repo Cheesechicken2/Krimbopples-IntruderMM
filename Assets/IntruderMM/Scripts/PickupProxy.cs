@@ -26,7 +26,13 @@ public enum PickupType
 	ShotgunAmmox6 = 18,
 	SnowballLauncher = 19,
     SnowballLauncherAmmo = 20,
-
+	Pistol2 = 21,
+	BoxingGloves = 22,
+	BloonGun = 23,
+	BloonCam = 24,
+    BananaRifleAmmo = 25,
+    BananaRifle = 26,
+	Medkit = 27,
 }
 
 [ExecuteInEditMode()]
