@@ -10,23 +10,27 @@ public class PickupProxyEditor : Editor
     private GUIStyle labelStyle;
     private GUIStyle textAreaStyle;
     private GUIStyle headerStyle;
+    private GUIStyle selectedLabelStyle;  // New style for the selected type label
 
-    private Vector2 scrollPosition;
+    private Vector2 scrollPosition;  // For scrolling
     private Font customFont;
 
-    private Dictionary<PickupType, ItemProxy> pickupTypeToProxyMap;
+    private Dictionary<PickupType, ItemProxy> pickupTypeToProxyMap; // Maps PickupType to ItemProxy
 
     private void SetStyles()
     {
         if (buttonStyle == null)
         {
+            // Load textures
             Texture2D buttonTexture = (Texture2D)AssetDatabase.LoadAssetAtPath("Assets/IntruderMM/Scripts/Extension/Editor/GUI/button.png", typeof(Texture2D));
             Texture2D buttonHoverTexture = (Texture2D)AssetDatabase.LoadAssetAtPath("Assets/IntruderMM/Scripts/Extension/Editor/GUI/buttonHover.png", typeof(Texture2D));
             Texture2D buttonSelectTexture = (Texture2D)AssetDatabase.LoadAssetAtPath("Assets/IntruderMM/Scripts/Extension/Editor/GUI/buttonSelect.png", typeof(Texture2D));
             Texture2D boxTexture = (Texture2D)AssetDatabase.LoadAssetAtPath("Assets/IntruderMM/Scripts/Extension/Editor/GUI/box.png", typeof(Texture2D));
 
-            customFont = AssetDatabase.LoadAssetAtPath<Font>("Assets/IntruderMM/Scripts/Extension/Editor/GUI/Font/ShareTechMono-Regular.ttf");
+            // Load custom font
+            customFont = AssetDatabase.LoadAssetAtPath<Font>("Assets/IntruderMM/Scripts/Extension/Editor/GUI/ShareTechMono-Regular.ttf");
 
+            // Button style
             buttonStyle = new GUIStyle(GUI.skin.button)
             {
                 normal = { background = buttonTexture },
@@ -39,6 +43,7 @@ public class PickupProxyEditor : Editor
                 fixedWidth = 200
             };
 
+            // Box style
             boxStyle = new GUIStyle(EditorStyles.helpBox)
             {
                 normal = { background = boxTexture },
@@ -46,6 +51,7 @@ public class PickupProxyEditor : Editor
                 margin = new RectOffset(0, 0, 10, 10)
             };
 
+            // Label style
             labelStyle = new GUIStyle(EditorStyles.label)
             {
                 fontSize = 14,
@@ -53,7 +59,7 @@ public class PickupProxyEditor : Editor
                 alignment = TextAnchor.MiddleLeft
             };
 
-
+            // TextArea style
             textAreaStyle = new GUIStyle(EditorStyles.textArea)
             {
                 fontSize = 14,
@@ -61,19 +67,29 @@ public class PickupProxyEditor : Editor
                 wordWrap = true
             };
 
-
+            // Header style
             headerStyle = new GUIStyle(EditorStyles.boldLabel)
             {
                 fontSize = 16,
                 font = customFont,
                 alignment = TextAnchor.MiddleCenter
             };
+
+            // Selected label style
+            selectedLabelStyle = new GUIStyle(EditorStyles.label)
+            {
+                fontSize = 16,
+                font = customFont,
+                alignment = TextAnchor.MiddleCenter,
+                fontStyle = FontStyle.Bold,
+                normal = { textColor = Color.green }  // Color for the selected type
+            };
         }
     }
 
     private void OnEnable()
     {
-
+        // Initialize pickupTypeToProxyMap with PickupType to ItemProxy mappings
         InitializePickupTypeToProxyMap();
     }
 
@@ -110,7 +126,7 @@ public class PickupProxyEditor : Editor
             { PickupType.Medkit, (ItemProxy)AssetDatabase.LoadAssetAtPath("Assets/IntruderMM/Prefabs/ItemProxies/MedkitProxy.asset", typeof(ItemProxy)) },
             { PickupType.SnowballLauncherAmmo, (ItemProxy)AssetDatabase.LoadAssetAtPath("Assets/IntruderMM/Prefabs/ItemProxies/SnowballLauncherAmmoProxy.asset", typeof(ItemProxy)) },
             // Add others here if i forgot
-        };
+         };
     }
 
     public override void OnInspectorGUI()
@@ -120,22 +136,35 @@ public class PickupProxyEditor : Editor
 
         PickupProxy proxy = (PickupProxy)target;
 
+        // Display the selected pickup type
+        EditorGUILayout.LabelField($"Selected Type: {proxy.pickupType}", selectedLabelStyle);
 
+        // Display a scrollable list of PickupType buttons
         EditorGUILayout.LabelField("Pickup Types", headerStyle);
 
+        // Begin scroll view
+        scrollPosition = EditorGUILayout.BeginScrollView(scrollPosition, GUILayout.Height(400));  // Adjust the height to make the list scrollable
 
-        scrollPosition = EditorGUILayout.BeginScrollView(scrollPosition, GUILayout.Height(400));  
-
-
+        // Display buttons in a grid format
         DisplayPickupTypeGrid(proxy);
 
-        EditorGUILayout.EndScrollView();
+        EditorGUILayout.EndScrollView();  // End scroll view
 
-
+        // Draw other settings in a styled box
         EditorGUILayout.BeginVertical(boxStyle);
         EditorGUILayout.LabelField("Other Settings", headerStyle);
 
+        // Display message about the proxy to replace
+        if (pickupTypeToProxyMap.TryGetValue(proxy.pickupType, out ItemProxy proxyItem))
+        {
+            EditorGUILayout.LabelField($"Psst! Replace this with {proxyItem.name}", labelStyle);
+        }
+        else
+        {
+            EditorGUILayout.LabelField("Psst! Replace this with an item from the selected type", labelStyle);
+        }
 
+        // Pickup Item Field (manual selection)
         EditorGUILayout.PropertyField(serializedObject.FindProperty("pickupItem"), new GUIContent("Pickup Item"));
 
         // Pickup Message
@@ -156,20 +185,22 @@ public class PickupProxyEditor : Editor
         // Teams allowed
         EditorGUILayout.PropertyField(serializedObject.FindProperty("teamsAllowed"), new GUIContent("Teams Allowed"));
 
-        EditorGUILayout.EndVertical();
+        EditorGUILayout.EndVertical();  // End box
 
         serializedObject.ApplyModifiedProperties();
     }
 
     private void DisplayPickupTypeGrid(PickupProxy proxy)
     {
+        // Define grid dimensions
         int itemsPerRow = 4;
         int buttonWidth = 200; // Width of each button
         int buttonHeight = 40; // Height of each button
 
+        // Start vertical layout
         EditorGUILayout.BeginVertical();
 
-
+        // Start grid layout
         EditorGUILayout.BeginHorizontal();
 
         int index = 0;
@@ -177,53 +208,26 @@ public class PickupProxyEditor : Editor
         {
             if (index > 0 && index % itemsPerRow == 0)
             {
-
+                // Move to the next row
                 EditorGUILayout.EndHorizontal();
                 EditorGUILayout.BeginHorizontal();
             }
 
-
+            // Create button
             if (GUILayout.Button(pickupType.ToString(), buttonStyle, GUILayout.Width(buttonWidth), GUILayout.Height(buttonHeight)))
             {
-
-                if (pickupTypeToProxyMap.TryGetValue(pickupType, out ItemProxy proxyItem))
-                {
-                    proxy.pickupItem = proxyItem;
-
-                    RefreshMesh(proxy);
-                }
+                // Update the selected pickup type
                 proxy.pickupType = pickupType;
-                Debug.Log($"Selected PickupType: {pickupType}, Updated Pickup Item: {proxy.pickupItem}");
+                Debug.Log($"Selected PickupType: {pickupType}");
             }
 
             index++;
         }
 
+        // End last row
         EditorGUILayout.EndHorizontal();
 
+        // End vertical layout
         EditorGUILayout.EndVertical();
-    }
-
-    private void RefreshMesh(PickupProxy proxy)
-    {
-        MeshFilter meshFilter = proxy.GetComponent<MeshFilter>();
-        if (meshFilter != null)
-        {
-            if (proxy.pickupItem != null && proxy.pickupItem.pickupMesh != null)
-            {
-                meshFilter.mesh = proxy.pickupItem.pickupMesh;
-            }
-            else
-            {
-                meshFilter.mesh = Resources.GetBuiltinResource<Mesh>("Cube.fbx");
-            }
-        }
-
-        MeshRenderer meshRenderer = proxy.GetComponent<MeshRenderer>();
-        if (meshRenderer == null)
-        {
-            meshRenderer = proxy.gameObject.AddComponent<MeshRenderer>();
-        }
-
     }
 }
