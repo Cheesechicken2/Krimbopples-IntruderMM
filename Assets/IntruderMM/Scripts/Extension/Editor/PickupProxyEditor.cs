@@ -28,7 +28,7 @@ public class PickupProxyEditor : Editor
             Texture2D boxTexture = (Texture2D)AssetDatabase.LoadAssetAtPath("Assets/IntruderMM/Scripts/Extension/Editor/GUI/box.png", typeof(Texture2D));
 
             // Load custom font
-            customFont = AssetDatabase.LoadAssetAtPath<Font>("Assets/IntruderMM/Scripts/Extension/Editor/GUI/ShareTechMono-Regular.ttf");
+            customFont = AssetDatabase.LoadAssetAtPath<Font>("Assets/IntruderMM/Scripts/Extension/Editor/GUI/Font/ShareTechMono-Regular.ttf");
 
             // Button style
             buttonStyle = new GUIStyle(GUI.skin.button)
