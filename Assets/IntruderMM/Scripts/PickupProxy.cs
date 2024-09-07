@@ -15,14 +15,18 @@ public enum PickupType
 	Grenade = 7,
 	SmokeGrenade = 8,
 	CSGrenade = 9,
-	LaserSensor = 10,
-	RemoteCharge = 11,
-	CardboardDecoy = 12,
-	SMGAmmox30 = 13,
-	PistolAmmox15 = 14,
-	SniperAmmox5 = 15,
-	Shotgun = 16,
-	ShotgunAmmox6 = 17
+    BushCamo = 10,
+    LaserSensor = 11,
+	RemoteCharge = 12,
+	CardboardDecoy = 13,
+	SMGAmmox30 = 14,
+	PistolAmmox15 = 15,
+	SniperAmmox5 = 16,
+	Shotgun = 17,
+	ShotgunAmmox6 = 18,
+	SnowballLauncher = 19,
+    SnowballLauncherAmmo = 20,
+
 }
 
 [ExecuteInEditMode()]

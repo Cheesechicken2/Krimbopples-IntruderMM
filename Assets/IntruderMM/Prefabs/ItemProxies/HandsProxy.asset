@@ -9,15 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c40d4dd16225f504da9f29c5e09d2621, type: 3}
-  m_Name: CustomItem01
+  m_Script: {fileID: 11500000, guid: ec3ce8e5ebf93664aaae7aa4dc9db195, type: 3}
+  m_Name: HandsProxy
   m_EditorClassIdentifier: 
-  idName: CustomItem01
+  idName: Hands
   pickupMesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
-  customPickupPrefab: {fileID: 8305891021076057530, guid: a0c68e94b10090847941696985924fbf, type: 3}
-  customItemName: Fart Bomb
-  customItemDescription: IT toots
-  inventoryIcon: {fileID: 21300000, guid: 5b814b7a5e829e3478fc95e740c39c07, type: 3}
-  showOnCharacter: 1
+  customPickupPrefab: {fileID: 0}
+  customItemName: 
+  customItemDescription: 
+  inventoryIcon: {fileID: 0}
+  showOnCharacter: 0
   attachmentBoneType: 0
   teamsAllowed: 0

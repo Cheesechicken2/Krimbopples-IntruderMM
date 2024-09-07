@@ -11,4 +11,5 @@ public class ItemProxy : ScriptableObject
     public Sprite inventoryIcon;
     public bool showOnCharacter = false;
     public AttachmentBoneType attachmentBoneType = AttachmentBoneType.None;
+    public ActivatorTeam teamsAllowed;
 }
