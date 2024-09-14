@@ -61,5 +61,62 @@ public class LightingSwitchGroupEditor : Editor
                 data.lightprobes[i] = LightmapSettings.lightProbes.bakedProbes[i];
             }
         }
+
+        // Add a button to enable this light mode
+        if (GUILayout.Button("Enable this light mode"))
+        {
+            // Set active only this object
+            data.gameObject.SetActive(true);
+            for (int i = 0; i < data.transform.parent.childCount; i++)
+            {
+                Transform child = data.transform.parent.GetChild(i);
+                if (child != data.transform) child.gameObject.SetActive(false);
+            }
+
+            // Set the correct lightmaps
+            LightmapData[] lightmaparray = new LightmapData[data.lightmaps.Length / 3];
+            for (var i = 0; i < data.lightmaps.Length / 3; i++)
+            {
+                LightmapData mapdata = new LightmapData();
+
+                mapdata.lightmapDir = data.lightmaps[i * 3];
+                mapdata.lightmapColor = data.lightmaps[i * 3 + 1];
+
+                lightmaparray[i] = mapdata;
+            }
+            LightmapSettings.lightmaps = lightmaparray;
+
+            // Set the correct light probes
+            for (int i = 0; i < data.lightprobes.Length; i++)
+            {
+                LightmapSettings.lightProbes.bakedProbes[i] = data.lightprobes[i];
+            }
+
+            // Set the correct render settings
+            RenderSettings.fog = data.renderSettings.fog;
+            RenderSettings.fogStartDistance = data.renderSettings.fogStartDistance;
+            RenderSettings.fogEndDistance = data.renderSettings.fogEndDistance;
+            RenderSettings.fogMode = data.renderSettings.fogMode;
+            RenderSettings.fogColor = data.renderSettings.fogColor;
+            RenderSettings.fogDensity = data.renderSettings.fogDensity;
+            RenderSettings.ambientMode = data.renderSettings.ambientMode;
+            RenderSettings.ambientSkyColor = data.renderSettings.ambientSkyColor;
+            RenderSettings.ambientEquatorColor = data.renderSettings.ambientEquatorColor;
+            RenderSettings.ambientGroundColor = data.renderSettings.ambientGroundColor;
+            RenderSettings.ambientIntensity = data.renderSettings.ambientIntensity;
+            RenderSettings.ambientLight = data.renderSettings.ambientLight;
+            RenderSettings.subtractiveShadowColor = data.renderSettings.subtractiveShadowColor;
+            RenderSettings.skybox = data.renderSettings.skybox;
+            RenderSettings.sun = data.renderSettings.sun;
+            RenderSettings.ambientProbe = data.renderSettings.ambientProbe;
+            RenderSettings.customReflection = data.renderSettings.customReflection;
+            RenderSettings.reflectionIntensity = data.renderSettings.reflectionIntensity;
+            RenderSettings.reflectionBounces = data.renderSettings.reflectionBounces;
+            RenderSettings.defaultReflectionMode = data.renderSettings.defaultReflectionMode;
+            RenderSettings.defaultReflectionResolution = data.renderSettings.defaultReflectionResolution;
+            RenderSettings.haloStrength = data.renderSettings.haloStrength;
+            RenderSettings.flareStrength = data.renderSettings.flareStrength;
+            RenderSettings.flareFadeSpeed = data.renderSettings.flareFadeSpeed;
+        }
     }
 }
