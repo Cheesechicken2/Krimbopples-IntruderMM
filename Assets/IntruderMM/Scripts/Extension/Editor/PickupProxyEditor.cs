@@ -75,21 +75,21 @@ public class PickupProxyEditor : Editor
                 alignment = TextAnchor.MiddleCenter
             };
 
-            // Selected label style
+
             selectedLabelStyle = new GUIStyle(EditorStyles.label)
             {
                 fontSize = 16,
                 font = customFont,
                 alignment = TextAnchor.MiddleCenter,
                 fontStyle = FontStyle.Bold,
-                normal = { textColor = Color.green }  // Color for the selected type
+                normal = { textColor = Color.green }  
             };
         }
     }
 
     private void OnEnable()
     {
-        // Initialize pickupTypeToProxyMap with PickupType to ItemProxy mappings
+
         InitializePickupTypeToProxyMap();
     }
 
@@ -136,10 +136,9 @@ public class PickupProxyEditor : Editor
 
         PickupProxy proxy = (PickupProxy)target;
 
-        // Display the selected pickup type
         EditorGUILayout.LabelField($"Selected Type: {proxy.pickupType}", selectedLabelStyle);
 
-        // Display a scrollable list of PickupType buttons
+
         EditorGUILayout.LabelField("Pickup Types", headerStyle);
 
         // Begin scroll view
